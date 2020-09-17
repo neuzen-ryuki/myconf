@@ -143,7 +143,7 @@ function git-current-branch {
         branch_status="%{$fg[red]%}+"
     elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
         # git commit されていないファイルがある状態
-        branch_status="%{$fg[yellow]}!"
+        branch_status="%{$fg[yellow]%}!"
     elif [[ -n `echo "$st" | grep "^rebase in progress"` ]]; then
         # コンフリクトが起こった状態
         echo "%{$fg[red]%}!(no branch)"
