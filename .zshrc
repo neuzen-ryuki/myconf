@@ -49,7 +49,7 @@ function git-current-branch {
         branch_status="%{$fg_bold[blue]%}"
     fi
     # ブランチ名を色付きで表示する
-    echo "%{$branch_status%}[$branch_name]%{$reset_color%}"
+    echo "%{$branch_status%}[$branch_name]%{$reset_color%}:"
 }
 
 
@@ -118,7 +118,7 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 prompt() {
     # ブランチ名，カレントディレクトリだけ表示
     # PS1="`git-current-branch`%{$fg[blue]%}%1~%{$reset_color%} $ "
-    PS1="`git-current-branch`:%{$fg_bold[blue]%}/%1~%{$reset_color%} $ "
+    PS1="`git-current-branch`%{$fg_bold[blue]%}/%1~%{$reset_color%} $ "
 }
 precmd_functions+=(prompt)
 # ## プロンプトが表示されるたびにプロンプト文字列を評価、置換する
