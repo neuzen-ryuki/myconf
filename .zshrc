@@ -21,11 +21,13 @@ autoload -Uz compinit && compinit
 
 ## git ブランチ名を色付きで表示させるメソッド
 function git-current-branch {
-    local branch_name st branch_status
+    local branch_name st branch_status mark
     # git 管理されていないディレクトリは何も返さない
     if [ ! -e  ".git" ]; then
         return
     fi
+
+    mark="\ue0a0"
     branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
     st=`git status 2> /dev/null`
     if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
@@ -49,6 +51,7 @@ function git-current-branch {
         branch_status="%{$fg_bold[blue]%}"
     fi
     # ブランチ名を色付きで表示する
+    # echo "%{$branch_status%}[%{$mark%} $branch_name]%{$reset_color%}:"
     echo "%{$branch_status%}[$branch_name]%{$reset_color%}:"
 }
 
@@ -91,7 +94,7 @@ unset __conda_setup
 
 # ---------------------------------------------- Node --------------------------------------------
 ## nodenv
-# eval  "$(nodenv init -)"
+eval  "$(nodenv init -)"
 
 
 # ---------------------------------------------- Homebrew ----------------------------------------
@@ -106,6 +109,14 @@ export KEYTIMEOUT=8
 bindkey "fd" vi-cmd-mode
 bindkey "^?" backward-delete-char
 
+## 履歴検索
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt share_history
+setopt hist_ignore_all_dups
+alias shist="history | grep "
+
 ## 色
 autoload -Uz colors
 colors
@@ -117,11 +128,13 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 ## 表示名
 prompt() {
     # ブランチ名，カレントディレクトリだけ表示
+    # PS1="`git-current-branch`%{$fg[blue]%}%1~%{$reset_color%} $ "
     PS1="`git-current-branch`%{$fg_bold[blue]%}/%1~%{$reset_color%} $ "
 }
 precmd_functions+=(prompt)
-# ## プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-# setopt prompt_subst
+
+## プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
 
 ## カーソル
 function zle-keymap-select {
@@ -145,7 +158,7 @@ preexec() {
 }
 
 ## 自作コマンド
-alias reshell="exec -l $SHELL"
+alias resh="exec -l $SHELL"
 alias ll="ls -la"
 
 ## cd
