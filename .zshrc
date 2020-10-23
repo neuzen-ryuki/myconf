@@ -1,23 +1,27 @@
 
 # ---------------------------------------------- Git ---------------------------------------------
 ## コマンド省略alias
-alias ga="git add"
-alias gmt="git commit -m"
-alias gsw="git switch"
-alias gswc="git switch -c"
-alias gswC="git switch -C"
-alias gb="git branch"
-alias gbd="git branch -d"
-alias gbD="git branch -D"
-alias gdiff="git diff"
-alias gdiffc="git diff --cached"
-alias gpush="git push"
-alias gpull="git pull"
+alias ga="git add "
+alias gmt="git commit -m "
+alias gsw="git switch "
+alias gswc="git switch -c "
+alias gswC="git switch -C "
+alias gb="git branch "
+alias gbd="git branch -d "
+alias gbD="git branch -D "
+alias glog="git log "
+alias gdiff="git diff "
+alias gdiffc="git diff --cached "
+alias gpush="git push "
+alias gpull="git pull "
 alias g\?="git ls-files --others --exclude-standard"
 alias g\+="git diff --name-only"
 
 ## 補完
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
+
 
 ## git ブランチ名を色付きで表示させるメソッド
 function git-current-branch {
