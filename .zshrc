@@ -84,11 +84,14 @@ unset __conda_setup
 
 # ---------------------------------------------- Go ----------------------------------------------
 ## goenv, go
-# export GOENV_ROOT="$HOME/.goenv"
-# export PATH="$GOENV_ROOT/bin:$PATH"
-# eval "$(goenv init -)"
-# export PATH="$GOROOT/bin:$PATH"
-# export PATH="$PATH:$GOPATH/bin"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export GOENV_DISABLE_GOPATH=1
+eval "$(goenv init -)"
+export PATH="$PATH:$GOROOT/bin"
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$GOPATH/bin"
+export GO111MODULE=on
 
 
 # ---------------------------------------------- PHP ---------------------------------------------

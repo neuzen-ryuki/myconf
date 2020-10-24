@@ -39,6 +39,7 @@ values."
 
      ;; default
      emacs-lisp
+     lsp
      auto-completion
      better-defaults
      (spell-checking :variables enable-flyspell-auto-completion nil)
@@ -67,16 +68,11 @@ values."
 
      ;; golang
      (go :variables
-         go-use-gometalinter t
-         go-fmt-command "goimports"
-         go-backend 'go-mode
+         go-backend 'lsp
          go-tab-width 2 )
 
      ;; python
      (python :variables python-backend 'anaconda)
-
-     ;; browser
-     ;; chrome
 
      )
    ;; List of additional packages that will be installed without being
@@ -412,7 +408,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-ui lsp-python-ms lsp-pyright helm-lsp dap-mode posframe lsp-treemacs bui lsp-mode flyspell-correct-helm flyspell-correct auto-dictionary flycheck-gometalinter flycheck-pos-tip pos-tip flycheck company-go go-guru go-eldoc go-mode sql-indent vmd-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core popup async yasnippet-snippets helm-company company-web web-completion-data tern company-statistics company-anaconda unfill mwim helm-c-yasnippet fuzzy company auto-yasnippet ac-ispell auto-complete csv-mode mmm-mode markdown-toc markdown-mode gh-md magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor twittering-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(lsp-ui lsp-python-ms lsp-pyright lsp-origami origami helm-lsp dap-mode posframe lsp-treemacs bui lsp-mode flyspell-correct-helm flyspell-correct auto-dictionary flycheck-gometalinter flycheck-pos-tip pos-tip flycheck company-go go-guru go-eldoc go-mode sql-indent vmd-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core popup async yasnippet-snippets helm-company company-web web-completion-data tern company-statistics company-anaconda unfill mwim helm-c-yasnippet fuzzy company auto-yasnippet ac-ispell auto-complete csv-mode mmm-mode markdown-toc markdown-mode gh-md magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor twittering-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
