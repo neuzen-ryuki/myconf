@@ -72,7 +72,11 @@ values."
          go-tab-width 2 )
 
      ;; python
-     (python :variables python-backend 'anaconda)
+     ;; (python :variables python-backend 'anaconda)
+     (python :variables python-backend 'lsp)
+
+     ;; docker
+     (docker :variables docker-dockerfile-backend 'lsp)
 
      )
    ;; List of additional packages that will be installed without being
