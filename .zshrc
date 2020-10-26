@@ -94,6 +94,14 @@ export PATH="$PATH:$GOPATH/bin"
 export GO111MODULE=on
 
 
+# ---------------------------------------------- Docker ------------------------------------------
+alias docps="docker ps"
+alias docpsa="docker ps -a"
+alias doclean="docker system prune"
+alias docmp="docker-compose"
+docin () {docker exec -it $1 /bin/bash}
+
+
 # ---------------------------------------------- PHP ---------------------------------------------
 ## phpbrew
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
@@ -101,7 +109,7 @@ export GO111MODULE=on
 
 # ---------------------------------------------- Node --------------------------------------------
 ## nodenv
-eval  "$(nodenv init -)"
+eval "$(nodenv init -)"
 
 
 # ---------------------------------------------- Homebrew ----------------------------------------
