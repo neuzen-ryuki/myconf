@@ -37,46 +37,51 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
 
-     ;; default
+     ;; Common
      emacs-lisp
-     lsp
-     auto-completion
-     better-defaults
-     (spell-checking :variables enable-flyspell-auto-completion nil)
-     syntax-checking
      helm
-     yaml
      github
+     yaml
      (org : variables org-projectile-file "TODOs.org")
      (markdown :variables
                markdown-live-preview-engine 'vmd
                markdown-command "vmd")
 
-     ;; Web
+     ;; IDE
+     lsp
+     better-defaults
+     auto-completion
+     syntax-checking
+     (spell-checking :variables enable-flyspell-auto-completion nil)
+
+     ;; Tech
      html
-     tide
-     typescript
-     (javascript :variables
-                 javascript-import-tool 'import-js
-                 javascript-backend 'tern
-                 js2-basic-offset 2
-                 js-indent-level 2 )
-     tern
-     react
-     sql
      php
+     sql
 
-     ;; golang
-     (go :variables
-         go-backend 'lsp
-         go-tab-width 2 )
+     react
+     (javascript
+      :variables
+      javascript-backend 'lsp
+      js2-basic-offset 2
+      js-indent-level 2 )
+     (typescript
+      :variables
+      typescript-backend 'lsp
+      typescript-indent-level 4 )
 
-     ;; python
-     ;; (python :variables python-backend 'anaconda)
-     (python :variables python-backend 'lsp)
+     (go
+      :variables
+      go-backend 'lsp
+      go-tab-width 2 )
 
-     ;; docker
-     (docker :variables docker-dockerfile-backend 'lsp)
+     (python
+      :variables
+      python-backend 'lsp)
+
+     (docker
+      :variables
+      docker-dockerfile-backend 'lsp)
 
      )
    ;; List of additional packages that will be installed without being
@@ -365,17 +370,15 @@ you should place your code here."
   ;; markdown
   (setq markdown-command "vmd")
 
-  ;; web
+  ;; indents
   (setq-default
-   ;; js2-mode
-   js2-basic-offset 2
-   js-indent-level 2
-   ;; web-mode
-   css-indet-offset 2
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2 )
+   ;;;; web-mode
+   ;; css-indet-offset 2
+   ;; web-mode-markup-indent-offset 2
+   ;; web-mode-css-indent-offset 2
+   ;; web-mode-code-indent-offset 2
+   ;; web-mode-attr-indent-offset 2
+   )
 
   ;; python
   (setq anaconda-mode-localhost-address "localhost")
