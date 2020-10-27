@@ -42,17 +42,16 @@ values."
      helm
      github
      yaml
-     (org : variables org-projectile-file "TODOs.org")
      (markdown :variables
                markdown-live-preview-engine 'vmd
                markdown-command "vmd")
 
      ;; IDE
      lsp
+     spell-checking
      better-defaults
      auto-completion
      syntax-checking
-     (spell-checking :variables enable-flyspell-auto-completion nil)
 
      ;; Tech
      html
@@ -88,19 +87,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages
-   '(
-     yasnippet-snippets
-     exec-path-from-shell
-     )
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages
-   '(
-     ;; gnuplot
-     company-tern
-     )
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -109,11 +100,6 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
-
-(with-eval-after-load 'org-agenda
-  (require 'org-projectile)
-  (push (org-projectile:todo-files) org-agenda-files)
- )
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -344,11 +330,11 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+   It is called immediately after `dotspacemacs/init', before layer configuration
+   executes.
+   This function is mostly useful for variables that need to be set
+   before packages are loaded. If you are unsure, you should try in setting them in
+   `dotspacemacs/user-config' first."
   (setq configuration-layer-elpa-archives
         '(("melpa" . "melpa.org/packages/")
           ("org" . "orgmode.org/elpa/")
@@ -357,34 +343,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-
-  ;; shell
-  (setenv "SHELL" "/bin/zsh")
-  (setq shell-file-name "/bin/zsh")
-
-  ;; markdown
-  (setq markdown-command "vmd")
-
-  ;; indents
-  (setq-default
-   ;;;; web-mode
-   ;; css-indet-offset 2
-   ;; web-mode-markup-indent-offset 2
-   ;; web-mode-css-indent-offset 2
-   ;; web-mode-code-indent-offset 2
-   ;; web-mode-attr-indent-offset 2
-   )
-
-  ;; python
-  (setq anaconda-mode-localhost-address "localhost")
-  (setq python-shell-interpreter "/Users/fujitaryuki/opt/anaconda3/bin/python")
-  (setenv "WORKON_HOME" "/Users/fujitaryuki/opt/anaconda3/envs")
-
+   This function is called at the very end of Spacemacs initialization after
+   layers configuration.
+   This is the place where most of your configurations should be done. Unless it is
+   explicitly specified that a variable should be set before a package is loaded,
+   you should place your code here."
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -406,9 +369,9 @@ you should place your code here."
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
+   This is an auto-generated function, do not modify its content directly, use
+   Emacs customize menu instead.
+   This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
