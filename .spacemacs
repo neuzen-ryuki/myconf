@@ -39,19 +39,18 @@ values."
 
      ;; Common
      emacs-lisp
-     helm
      github
      yaml
-     (markdown :variables
-               markdown-live-preview-engine 'vmd
-               markdown-command "vmd")
+     (markdown
+      :variables
+      markdown-live-preview-engine 'vmd
+      markdown-command "vmd")
 
      ;; IDE
      lsp
      spell-checking
-     better-defaults
-     auto-completion
      syntax-checking
+     auto-completion
 
      ;; Tech
      html
@@ -335,10 +334,10 @@ values."
    This function is mostly useful for variables that need to be set
    before packages are loaded. If you are unsure, you should try in setting them in
    `dotspacemacs/user-config' first."
-  (setq configuration-layer-elpa-archives
-        '(("melpa" . "melpa.org/packages/")
-          ("org" . "orgmode.org/elpa/")
-          ("gnu" . "elpa.gnu.org/packages/")))
+  ;; (setq configuration-layer-elpa-archives
+  ;;       '(("melpa" . "melpa.org/packages/")
+  ;;         ("org" . "orgmode.org/elpa/")
+  ;;         ("gnu" . "elpa.gnu.org/packages/")))
 
   )
 (defun dotspacemacs/user-config ()
