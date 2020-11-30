@@ -4,8 +4,8 @@
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+   You should not put any user code in this function besides modifying the variable
+   values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -39,6 +39,7 @@ values."
 
      ;; Common
      emacs-lisp
+     osx
      github
      yaml
      (markdown
@@ -48,14 +49,15 @@ values."
 
      ;; IDE
      lsp
-     spell-checking
-     syntax-checking
      auto-completion
+     better-defaults
+     syntax-checking
+     (spell-checking :variables enable-flyspell-auto-completion nil)
 
      ;; Tech
      html
-     php
      sql
+     (php :variables php-backend 'lsp)
 
      react
      (javascript
@@ -66,7 +68,7 @@ values."
      (typescript
       :variables
       typescript-backend 'lsp
-      typescript-indent-level 4 )
+      typescript-indent-level 2 )
 
      (go
       :variables
@@ -334,10 +336,13 @@ values."
    This function is mostly useful for variables that need to be set
    before packages are loaded. If you are unsure, you should try in setting them in
    `dotspacemacs/user-config' first."
-  ;; (setq configuration-layer-elpa-archives
-  ;;       '(("melpa" . "melpa.org/packages/")
-  ;;         ("org" . "orgmode.org/elpa/")
-  ;;         ("gnu" . "elpa.gnu.org/packages/")))
+  (setq configuration-layer-elpa-archives
+        '(("melpa" . "melpa.org/packages/")
+          ("org" . "orgmode.org/elpa/")
+          ("gnu" . "elpa.gnu.org/packages/")))
+
+  ;; Default directory settings for SPC f f
+  (setq default-directory "~/")
 
   )
 (defun dotspacemacs/user-config ()
@@ -357,8 +362,7 @@ values."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (flyspell-correct-helm flyspell-correct auto-dictionary flycheck-gometalinter flycheck-pos-tip pos-tip flycheck company-go go-guru go-eldoc go-mode sql-indent vmd-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core popup async yasnippet-snippets helm-company company-web web-completion-data tern company-statistics company-anaconda unfill mwim helm-c-yasnippet fuzzy company auto-yasnippet ac-ispell auto-complete csv-mode mmm-mode markdown-toc markdown-mode gh-md magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor twittering-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+   '(tide typescript-mode dockerfile-mode docker tablist docker-tramp flyspell-correct-helm flyspell-correct auto-dictionary flycheck-gometalinter flycheck-pos-tip pos-tip flycheck company-go go-guru go-eldoc go-mode sql-indent vmd-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode powerline spinner hydra lv parent-mode projectile pkg-info epl flx highlight smartparens iedit anzu evil goto-chg undo-tree bind-map bind-key packed f dash s helm avy helm-core popup async yasnippet-snippets helm-company company-web web-completion-data tern company-statistics company-anaconda unfill mwim helm-c-yasnippet fuzzy company auto-yasnippet ac-ispell auto-complete csv-mode mmm-mode markdown-toc markdown-mode gh-md magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit transient git-commit with-editor twittering-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

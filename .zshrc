@@ -61,6 +61,8 @@ function git-current-branch {
 
 
 # ---------------------------------------------- Python ------------------------------------------
+## active virtual-env
+alias activenv="source ./venv/bin/activate"
 ## pyenv from homebrew
 export PYENV_ROOT="/usr/local/var/pyenv"
 eval "$(pyenv init -)"
