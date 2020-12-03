@@ -61,27 +61,22 @@ function git-current-branch {
 
 
 # ---------------------------------------------- Python ------------------------------------------
-## active virtual-env
+## settings for virtual-env of python
 alias activenv="source ./venv/bin/activate"
+alias createnv="python3 -m venv --system-site-packages ./venv"
+alias cybuild="python setup.py build_ext --inplace"
+alias cprof="python -m cProfile -s cumtime cprof.py"
+function python-virtual-env {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        place=`echo ${VIRTUAL_ENV} | awk -F "/" '{ print $(NF - 1) }'`
+        echo "%{$fg[magenta]%}($place)%{$reset_color%}"
+    fi
+}
+
 ## pyenv from homebrew
 export PYENV_ROOT="/usr/local/var/pyenv"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-## >>> conda initialize >>>
-## !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/fujitaryuki/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/fujitaryuki/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/fujitaryuki/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/fujitaryuki/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-## <<< conda initialize <<<
 
 
 # ---------------------------------------------- Go ----------------------------------------------
@@ -145,8 +140,7 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 ## 表示名
 prompt() {
     # ブランチ名，カレントディレクトリだけ表示
-    # PS1="`git-current-branch`%{$fg[blue]%}%1~%{$reset_color%} $ "
-    PS1="`git-current-branch`%{$fg_bold[blue]%}/%1~%{$reset_color%} $ "
+    PS1="`python-virtual-env``git-current-branch`%{$fg_bold[blue]%}/%1~%{$reset_color%} $ "
 }
 precmd_functions+=(prompt)
 
