@@ -6,6 +6,7 @@ alias gmt="git commit -m "
 alias gsw="git switch "
 alias gswc="git switch -c "
 alias gswC="git switch -C "
+alias gres="git restore ."
 alias gb="git branch "
 alias gbd="git branch -d "
 alias gbD="git branch -D "
@@ -21,7 +22,6 @@ alias g\+="git diff --name-only"
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
-
 
 ## git ブランチ名を色付きで表示させるメソッド
 function git-current-branch {
@@ -64,8 +64,9 @@ function git-current-branch {
 ## settings for virtual-env of python
 alias activenv="source ./venv/bin/activate"
 alias createnv="python3 -m venv --system-site-packages ./venv"
-alias cybuild="python setup.py build_ext --inplace"
-alias cprof="python -m cProfile -s cumtime cprof.py"
+alias cybuild="python setup_cython.py build_ext --inplace"
+alias cyclean="rm -r ./build && rm ./*.so ./*.cpp"
+alias cprof="python -m cProfile -s tottime cprof.py"
 function python-virtual-env {
     if [[ -n "$VIRTUAL_ENV" ]]; then
         place=`echo ${VIRTUAL_ENV} | awk -F "/" '{ print $(NF - 1) }'`
@@ -173,8 +174,6 @@ alias resh="exec -l $SHELL"
 alias ll="ls -la"
 
 ## cd
-alias ...="cd ../../"
-alias ....="cd ../../../"
 setopt auto_cd
 setopt pushd_ignore_dups
 
