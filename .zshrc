@@ -61,12 +61,14 @@ function git-current-branch {
 
 
 # ---------------------------------------------- Python ------------------------------------------
-## settings for virtual-env of python
 alias activenv="source ./venv/bin/activate"
 alias createnv="python3 -m venv --system-site-packages ./venv"
 alias cybuild="python setup_cython.py build_ext --inplace"
 alias cyclean="rm -r ./build && rm ./*.so ./*.cpp"
+alias rmpyc="rm -r ./__pycache__"
 alias cprof="python -m cProfile -s tottime cprof.py"
+alias cproftot="python -m cProfile -s tottime cprof.py"
+alias cprofcum="python -m cProfile -s cumtime cprof.py"
 function python-virtual-env {
     if [[ -n "$VIRTUAL_ENV" ]]; then
         place=`echo ${VIRTUAL_ENV} | awk -F "/" '{ print $(NF - 1) }'`
@@ -180,3 +182,5 @@ setopt pushd_ignore_dups
 ## simsパスを通す
 export PATH="/usr/local/sbin:$PATH"
 
+## timeコマンドフォーマット
+TIMEFMT=$'========================\nProgram : %J\nCPU     : %P\nuser    : %*Us\nsystem  : %*Ss\ntotal   : %*Es\n========================\n'
